@@ -8,8 +8,7 @@ This code has been tested on on a personal laptop with Intel i7-9750H 2.6-GHz pr
 
     pip install -r requirements.txt
 
-## 2. Test
-Download the datesets:
+## 2. Download the datesets:
 ### IP:
 [Indian Pines corrected](http://www.ehu.eus/ccwintco/uploads/6/67/Indian_pines_corrected.mat)
 
@@ -29,7 +28,7 @@ Download the datesets:
 
 and put them into data directory.
 
-Download the models (loading models):
+## 3. Download the models (loading models):
 
     [Indian Pines]() code:
     [Kennedy Space Center]() code:
@@ -37,7 +36,7 @@ Download the models (loading models):
     [Salinas Scene]() code:
 and put them into models directory.
 
-Download the pretrained_models (loading model parameters):
+## 4. Download the pretrained_models (loading model parameters):
 
     [Indian Pines]() code:
     [Kennedy Space Center]() code:
@@ -46,7 +45,9 @@ Download the pretrained_models (loading model parameters):
 and put them into pretrained_models directory.
 
 
-## 3. Cite
+## 5. Test
+
+## 6. Cite
 If you use MCNN-CP in your work please cite our paper:
 
     @ARTICLE{9103280,
