@@ -26,10 +26,8 @@ and put them into data directory.
 
 ## 3. Download the models (loading models):
 
-    [Indian Pines]() code:
-    [Kennedy Space Center]() code:
-    [University of Pavia]() code:
-    [Salinas Scene]() code:
+[models](https://pan.baidu.com/s/1fnthMICtci2lfuWEihkDJA) code: caor
+
 and put them into models directory.
 
 ## 4. Download the pretrained_models (loading model parameters):
