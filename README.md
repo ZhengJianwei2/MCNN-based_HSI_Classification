@@ -9,6 +9,13 @@ This code has been tested on on a personal laptop with Intel i7-9750H 2.6-GHz pr
     pip install -r requirements.txt
 
 ## 2. Test
+Download the models:
+
+    [Indian Pines]() code:
+    [Kennedy Space Center]() code:
+    [University of Pavia]() code:
+    [Salinas Scene]() code:
+and put them into models directory.
 
 
 ## 3. Cite
