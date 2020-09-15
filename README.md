@@ -17,6 +17,14 @@ Download the models:
     [Salinas Scene]() code:
 and put them into models directory.
 
+Download the pretrained_models:
+
+    [Indian Pines]() code:
+    [Kennedy Space Center]() code:
+    [University of Pavia]() code:
+    [Salinas Scene]() code:
+and put them into pretrained_models directory.
+
 
 ## 3. Cite
 If you use MCNN-CP in your work please cite our paper:
