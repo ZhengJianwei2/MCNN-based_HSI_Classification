@@ -14,12 +14,12 @@ This code has been tested on on a personal laptop with Intel i7-9750H 2.6-GHz pr
 ## 3. Cite
 If you use MCNN-CP in your work please cite our paper:
 
-        @ARTICLE{9103280,
-          author={J. {Zheng} and Y. {Feng} and C. {Bai} and J. {Zhang}},
-          journal={IEEE Transactions on Geoscience and Remote Sensing}, 
-          title={Hyperspectral Image Classification Using Mixed Convolutions and Covariance Pooling}, 
-          year={2020},
-          volume={},
-          number={},
-          pages={1-13},
-        }
+    @ARTICLE{9103280,
+      author={J. {Zheng} and Y. {Feng} and C. {Bai} and J. {Zhang}},
+      journal={IEEE Transactions on Geoscience and Remote Sensing}, 
+      title={Hyperspectral Image Classification Using Mixed Convolutions and Covariance Pooling}, 
+      year={2020},
+      volume={},
+      number={},
+      pages={1-13},
+    }
