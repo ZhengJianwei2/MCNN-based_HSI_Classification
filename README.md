@@ -31,11 +31,15 @@ and put them into data directory.
 and put them into models directory.
 
 ## 4. Download the pretrained_models (loading model parameters):
+* IP:
+[Indian Pines](https://pan.baidu.com/s/1shzME97Y7Ci_5EvM9qdTWQ) code:d59l
+* KSC:
+[Kennedy Space Center]() code:
+* UP:
+[University of Pavia]() code:
+* SA:
+[Salinas Scene]() code:
 
-    [Indian Pines]() code:
-    [Kennedy Space Center]() code:
-    [University of Pavia]() code:
-    [Salinas Scene]() code:
 and put them into pretrained_models directory.
 
 
