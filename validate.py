@@ -18,7 +18,19 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.io as sio
 import os
-import spectral
+import argparse
+
+# MODELS = ['MCNN','MCNN-CP','MCNN-PS','Oct-MCNN','Oct-MCNN-CP','Oct-MCNN-PS'] # 可选模型
+# DATASETS = ['IP','KSC','UP','SA'] # 可选数据集
+# RATIOS = [0.7,0.95] # 可选测试样本量，剩余为训练样本量
+parser = argparse.ArgumentParser(description='evaluation')
+parser.add_argument('--dataset', '-d', type=str, default='IP',
+                    help='dataset name')
+parser.add_argument('--model', '-m', type=str, default='Oct-MCNN-PS',
+                    help='model name')
+parser.add_argument('--ratio', '-r', default=0.7, type=float,
+                    help='test ratio')
+args = parser.parse_args()
 
 def loadData(name):
     data_path = os.path.join(os.getcwd(),'data')
@@ -129,15 +141,11 @@ def reports (X_test,y_test,name):
 
 
 
-if __name__ == '__main__':
+def main():
     ## GLOBAL VARIABLES
-    MODELS = ['MCNN','MCNN-CP','MCNN-PS','Oct-MCNN','Oct-MCNN-CP','Oct-MCNN-PS'] # 可选模型
-    DATASETS = ['IP','KSC','UP','SA'] # 可选数据集
-    RATIOS = [0.7,0.95] # 可选测试样本量，剩余为训练样本量
-
-    dataset = DATASETS[0]
-    modelname = MODELS[5]
-    test_ratio = RATIOS[0]
+    dataset = args.dataset
+    modelname = args.model
+    test_ratio = args.ratio
     train_ratio = int((1-test_ratio)*100)
 
     windowSize = 25
