@@ -1,0 +1,192 @@
+import tensorflow as tf
+import keras
+from keras.layers import Conv2D, Conv3D, Flatten, Dense, Reshape, BatchNormalization, Lambda, AveragePooling2D, Add
+from keras.layers import Dropout, Input
+from keras.models import Model, load_model
+from keras.optimizers import Adam
+from keras.callbacks import ModelCheckpoint
+from keras.utils import np_utils
+
+from sklearn.decomposition import PCA
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import confusion_matrix, accuracy_score, classification_report, cohen_kappa_score
+
+from operator import truediv
+import time
+from subpixel_conv2d import SubpixelConv2D
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy.io as sio
+import os
+import spectral
+
+def loadData(name):
+    data_path = os.path.join(os.getcwd(),'data')
+    if name == 'IP':
+        data = sio.loadmat(os.path.join(data_path, 'Indian_pines_corrected.mat'))['indian_pines_corrected']
+        labels = sio.loadmat(os.path.join(data_path, 'Indian_pines_gt.mat'))['indian_pines_gt']
+    elif name == 'KSC':
+        data = sio.loadmat(os.path.join(data_path, 'KSC.mat'))['indian_pines_corrected']
+        labels = sio.loadmat(os.path.join(data_path, 'KSC.mat'))['indian_pines_gt']
+    elif name == 'SA':
+        data = sio.loadmat(os.path.join(data_path, 'Salinas_corrected.mat'))['salinas_corrected']
+        labels = sio.loadmat(os.path.join(data_path, 'Salinas_gt.mat'))['salinas_gt']
+    elif name == 'UP':
+        data = sio.loadmat(os.path.join(data_path, 'PaviaU.mat'))['paviaU']
+        labels = sio.loadmat(os.path.join(data_path, 'PaviaU_gt.mat'))['paviaU_gt']
+    return data, labels
+
+def splitTrainTestSet(X, y, testRatio, randomState=345):
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=testRatio, random_state=randomState,stratify=y)
+    return X_train, X_test, y_train, y_test
+
+def applyPCA(X, numComponents=64):
+    newX = np.reshape(X, (-1, X.shape[2]))
+    print(newX.shape)
+    pca = PCA(n_components=numComponents, whiten=True)
+    newX = pca.fit_transform(newX)
+    newX = np.reshape(newX, (X.shape[0],X.shape[1], numComponents))
+    return newX, pca, pca.explained_variance_ratio_
+
+def padWithZeros(X, margin=2):
+    newX = np.zeros((X.shape[0] + 2 * margin, X.shape[1] + 2* margin, X.shape[2]))
+    x_offset = margin
+    y_offset = margin
+    newX[x_offset:X.shape[0] + x_offset, y_offset:X.shape[1] + y_offset, :] = X
+    return newX
+
+def createPatches(X, y, windowSize=25, removeZeroLabels = True):
+    margin = int((windowSize - 1) / 2)
+    zeroPaddedX = padWithZeros(X, margin=margin)
+    # split patches
+    patchesData = np.zeros((X.shape[0] * X.shape[1], windowSize, windowSize, X.shape[2]))
+    patchesLabels = np.zeros((X.shape[0] * X.shape[1]))
+    patchIndex = 0
+    for r in range(margin, zeroPaddedX.shape[0] - margin):
+        for c in range(margin, zeroPaddedX.shape[1] - margin):
+            patch = zeroPaddedX[r - margin:r + margin + 1, c - margin:c + margin + 1]   
+            patchesData[patchIndex, :, :, :] = patch
+            patchesLabels[patchIndex] = y[r-margin, c-margin]
+            patchIndex = patchIndex + 1
+    if removeZeroLabels:
+        patchesData = patchesData[patchesLabels>0,:,:,:]
+        patchesLabels = patchesLabels[patchesLabels>0]
+        patchesLabels -= 1
+    return patchesData, patchesLabels
+
+def infoChange(X,numComponents):
+    X_copy = np.zeros((X.shape[0] , X.shape[1], X.shape[2]))
+    half = int(numComponents/2)
+    for i in range(0,half-1):
+        X_copy[:,:,i] = X[:,:,(half-i)*2-1]
+    for i in range(half,numComponents):
+        X_copy[:,:,i] = X[:,:,(i-half)*2]
+    X = X_copy
+    return X
+
+def AA_andEachClassAccuracy(confusion_matrix):
+    counter = confusion_matrix.shape[0]
+    list_diag = np.diag(confusion_matrix)
+    list_raw_sum = np.sum(confusion_matrix, axis=1)
+    each_acc = np.nan_to_num(truediv(list_diag, list_raw_sum))
+    average_acc = np.mean(each_acc)
+    return each_acc, average_acc
+
+def reports (X_test,y_test,name):
+    start = time.time()
+    Y_pred = model.predict(X_test)
+    y_pred = np.argmax(Y_pred, axis=1)
+    end = time.time()
+    print(end - start)
+    if name == 'IP':
+        target_names = ['Alfalfa', 'Corn-notill', 'Corn-mintill', 'Corn',
+                        'Grass-pasture', 'Grass-trees', 'Grass-pasture-mowed', 
+                        'Hay-windrowed', 'Oats', 'Soybean-notill', 'Soybean-mintill',
+                        'Soybean-clean', 'Wheat', 'Woods', 'Buildings-Grass-Trees-Drives',
+                        'Stone-Steel-Towers']
+    elif name == 'KSC':
+        target_names = ['Scrub','Willow-swamp','CP-hammock','Slash-pine','Oak/Broadleaf','Hardwood','Swamp','Graminoid-marsh'
+                        ,'Spartina-marsh','Cattail-marsh','Salt-marsh','Mud-flats','Water']
+    elif name == 'SA':
+        target_names = ['Brocoli_green_weeds_1','Brocoli_green_weeds_2','Fallow','Fallow_rough_plow','Fallow_smooth',
+                        'Stubble','Celery','Grapes_untrained','Soil_vinyard_develop','Corn_senesced_green_weeds',
+                        'Lettuce_romaine_4wk','Lettuce_romaine_5wk','Lettuce_romaine_6wk','Lettuce_romaine_7wk',
+                        'Vinyard_untrained','Vinyard_vertical_trellis']
+    elif name == 'UP':
+        target_names = ['Asphalt','Meadows','Gravel','Trees', 'Painted metal sheets','Bare Soil','Bitumen',
+                        'Self-Blocking Bricks','Shadows']
+    
+    classification = classification_report(np.argmax(y_test, axis=1), y_pred, target_names=target_names)
+    oa = accuracy_score(np.argmax(y_test, axis=1), y_pred)
+    confusion = confusion_matrix(np.argmax(y_test, axis=1), y_pred)
+    each_acc, aa = AA_andEachClassAccuracy(confusion)
+    kappa = cohen_kappa_score(np.argmax(y_test, axis=1), y_pred)
+    score = model.evaluate(X_test, y_test, batch_size=32) 
+    Test_Loss =  score[0]*100
+    Test_accuracy = score[1]*100
+    
+    return classification, confusion, Test_Loss, Test_accuracy, oa*100, each_acc*100, aa*100, kappa*100
+
+
+
+if __name__ == '__main__':
+    ## GLOBAL VARIABLES
+    MODELS = ['MCNN','MCNN-CP','MCNN-PS','Oct-MCNN','Oct-MCNN-CP','Oct-MCNN-PS'] # 可选模型
+    DATASETS = ['IP','KSC','UP','SA'] # 可选数据集
+    RATIOS = [0.7,0.95] # 可选测试样本量，剩余为训练样本量
+
+    dataset = DATASETS[0]
+    modelname = MODELS[5]
+    test_ratio = RATIOS[0]
+    train_ratio = int((1-test_ratio)*100)
+
+    windowSize = 25
+    componentsNum = 20 if dataset == 'UP' else 28
+    if dataset == 'UP':
+        output_units = 9
+    elif dataset == 'KSC':
+        output_units = 13
+    else:
+        output_units = 16
+
+    X, y = loadData(dataset)
+    X,pca,ratio = applyPCA(X,numComponents=componentsNum)
+    X = infoChange(X,componentsNum)
+    X, y = createPatches(X, y, windowSize=windowSize)
+    Xtrain, Xtest, ytrain, ytest = splitTrainTestSet(X, y, test_ratio)
+
+    Xtest = Xtest.reshape(-1, windowSize, windowSize, componentsNum, 1)
+    ytest = np_utils.to_categorical(ytest)
+
+    model = load_model(str(modelname)+'.h5', custom_objects={'SubpixelConv2D': SubpixelConv2D,'tf': tf})
+    adam = Adam(lr=0.001, decay=1e-06)
+
+    model.load_weights(str(dataset)+"_"+str(modelname)+"_"+str(train_ratio)+".hdf5")
+    model.compile(loss='categorical_crossentropy', optimizer=adam, metrics=['accuracy'])
+
+    Y_pred_test = model.predict(Xtest)
+    y_pred_test = np.argmax(Y_pred_test, axis=1)
+    classification = classification_report(np.argmax(ytest, axis=1), y_pred_test)
+    print(classification)
+
+    classification, confusion, Test_loss, Test_accuracy, oa, each_acc, aa, kappa = reports(Xtest,ytest,dataset)
+    classification = str(classification)
+    confusion1 = str(confusion)
+    file_name = "classification_report.txt"
+
+    with open(file_name, 'w') as x_file:
+        x_file.write('{} Test loss (%)'.format(Test_loss))
+        x_file.write('\n')
+        x_file.write('{} Test accuracy (%)'.format(Test_accuracy))
+        x_file.write('\n')
+        x_file.write('\n')
+        x_file.write('{} Kappa accuracy (%)'.format(kappa))
+        x_file.write('\n')
+        x_file.write('{} Overall accuracy (%)'.format(oa))
+        x_file.write('\n')
+        x_file.write('{} Average accuracy (%)'.format(aa))
+        x_file.write('\n')
+        x_file.write('\n')
+        x_file.write('{}'.format(classification))
+        x_file.write('\n')
+        x_file.write('{}'.format(confusion1))
