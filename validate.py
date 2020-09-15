@@ -38,8 +38,8 @@ def loadData(name):
         data = sio.loadmat(os.path.join(data_path, 'Indian_pines_corrected.mat'))['indian_pines_corrected']
         labels = sio.loadmat(os.path.join(data_path, 'Indian_pines_gt.mat'))['indian_pines_gt']
     elif name == 'KSC':
-        data = sio.loadmat(os.path.join(data_path, 'KSC.mat'))['indian_pines_corrected']
-        labels = sio.loadmat(os.path.join(data_path, 'KSC.mat'))['indian_pines_gt']
+        data = sio.loadmat(os.path.join(data_path, 'KSC.mat'))['KSC']
+        labels = sio.loadmat(os.path.join(data_path, 'KSC_gt.mat'))['KSC_gt']
     elif name == 'SA':
         data = sio.loadmat(os.path.join(data_path, 'Salinas_corrected.mat'))['salinas_corrected']
         labels = sio.loadmat(os.path.join(data_path, 'Salinas_gt.mat'))['salinas_gt']
