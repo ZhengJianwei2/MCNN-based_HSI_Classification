@@ -18,3 +18,5 @@ Download data sets:
 [Salinas Scene corrected](http://www.ehu.eus/ccwintco/uploads/a/a3/Salinas_corrected.mat)
 
 [Salinas Scene gt](http://www.ehu.eus/ccwintco/uploads/f/fa/Salinas_gt.mat)
+
+and put them here!
