@@ -44,7 +44,7 @@ and put them into pretrained_models directory.
 
 ## 5. Test
 
-    python validate.py                  \
+    python validate.py                \
 	--dataset IP                      \ # dataset_name
 	--model Oct-MCNN-PS               \ # model_name
 	--ratio 0.7                         # test_ratio
