@@ -140,7 +140,6 @@ def reports (X_test,y_test,name):
     return classification, confusion, Test_Loss, Test_accuracy, oa*100, each_acc*100, aa*100, kappa*100
 
 
-
 def main():
     ## GLOBAL VARIABLES
     dataset = args.dataset
@@ -198,3 +197,6 @@ def main():
         x_file.write('{}'.format(classification))
         x_file.write('\n')
         x_file.write('{}'.format(confusion1))
+
+if __name__ == '__main__':
+    main()
