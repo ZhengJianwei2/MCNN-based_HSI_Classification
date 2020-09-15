@@ -32,7 +32,7 @@ and put them into models directory.
 
 ## 4. Download the pretrained_models (loading model parameters):
 * IP:
-[Indian Pines](https://pan.baidu.com/s/1shzME97Y7Ci_5EvM9qdTWQ) code:d59l
+[Indian Pines](https://pan.baidu.com/s/1shzME97Y7Ci_5EvM9qdTWQ) code: d59l
 * KSC:
 [Kennedy Space Center]() code:
 * UP:
@@ -42,8 +42,14 @@ and put them into models directory.
 
 and put them into pretrained_models directory.
 
-
 ## 5. Test
+
+        python validate.py                    \
+	        --dataset IP                      \ # dataset_name
+	        --model Oct-MCNN-PS               \ # model_name
+            --ratio 0.7                         # test_ratio
+           
+The testing result will be saved in the classification_report.txt.
 
 ## 6. Cite
 If you use MCNN-CP in your work please cite our paper:
