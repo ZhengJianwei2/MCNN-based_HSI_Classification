@@ -44,10 +44,10 @@ and put them into pretrained_models directory.
 
 ## 5. Test
 
-        python validate.py                    \
-	        --dataset IP                      \ # dataset_name
-	        --model Oct-MCNN-PS               \ # model_name
-            --ratio 0.7                         # test_ratio
+    python validate.py                    \
+	--dataset IP                      \ # dataset_name
+	--model Oct-MCNN-PS               \ # model_name
+    	--ratio 0.7                         # test_ratio
            
 The testing result will be saved in the classification_report.txt.
 
