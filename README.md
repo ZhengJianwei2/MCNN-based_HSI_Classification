@@ -1,6 +1,6 @@
 # MCNN-based_HSI_Classification
 ## Papers
-MCNN-CP: Hyperspectral Image Classification Using Mixed Convolutions and Covariance Pooling (TGARS 2020)[paper](https://ieeexplore.ieee.org/document/9103280/)  
+MCNN-CP: Hyperspectral Image Classification Using Mixed Convolutions and Covariance Pooling (TGARS 2020) [paper](https://ieeexplore.ieee.org/document/9103280/)  
 MCNN-PS & Oct-MCNN-PS: Hyperspectral Image Classification Using Hybrid Octave and Sub-Pixel Convolutional Neural Network (TGARS Submitted)
 
 ## 1. Environment setup
