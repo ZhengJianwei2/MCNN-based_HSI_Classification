@@ -9,7 +9,15 @@ This code has been tested on on a personal laptop with Intel i7-9750H 2.6-GHz pr
     pip install -r requirements.txt
 
 ## 2. Test
-Download the models:
+Download the datesets:
+
+    [Indian Pines]() code:
+    [Kennedy Space Center]() code:
+    [University of Pavia]() code:
+    [Salinas Scene]() code:
+and put them into data directory.
+
+Download the models (loading models):
 
     [Indian Pines]() code:
     [Kennedy Space Center]() code:
@@ -17,7 +25,7 @@ Download the models:
     [Salinas Scene]() code:
 and put them into models directory.
 
-Download the pretrained_models:
+Download the pretrained_models (loading model parameters):
 
     [Indian Pines]() code:
     [Kennedy Space Center]() code:
