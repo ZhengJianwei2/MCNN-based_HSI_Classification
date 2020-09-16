@@ -26,7 +26,7 @@ and put them into data directory.
 
 ## 3. Download the models (loading models):
 
-[models](https://pan.baidu.com/s/1fnthMICtci2lfuWEihkDJA) code: caor
+* [models](https://pan.baidu.com/s/1fnthMICtci2lfuWEihkDJA) code: caor
 
 and put them into models directory.
 
