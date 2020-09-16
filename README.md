@@ -36,9 +36,9 @@ and put them into models directory.
 * KSC:
 [Kennedy Space Center]() code:
 * UP:
-[University of Pavia]() code:
+[University of Pavia](https://pan.baidu.com/s/1wM8vBRewnBHmCHvPbnBnOg) code: 8h4m
 * SA:
-[Salinas Scene]() code:
+[Salinas Scene](https://pan.baidu.com/s/1DZAd5Ufm5DkCLUCVCz33dQ) code: io53
 
 and put them into pretrained_models directory.
 
