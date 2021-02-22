@@ -1,6 +1,6 @@
 # MCNN-based_HSI_Classification
 ## Papers
-* MCNN-CP: Hyperspectral Image Classification Using Mixed Convolutions and Covariance Pooling (TGARS 2020) [paper](https://ieeexplore.ieee.org/document/9103280/)  
+* MCNN-CP: Hyperspectral Image Classification Using Mixed Convolutions and Covariance Pooling (TGARS 2021) [paper](https://ieeexplore.ieee.org/document/9103280/)  
 * MCNN-PS & Oct-MCNN-PS: Hyperspectral Image Classification Using Hybrid Octave and Sub-Pixel Convolutional Neural Network (TGARS Submitted)
 
 ## 1. Environment setup
@@ -47,19 +47,26 @@ and put them into pretrained_models directory.
     python validate.py                \
 	--dataset IP                      \ # dataset_name
 	--model Oct-MCNN-PS               \ # model_name
-	--ratio 0.7                         # test_ratio
+	--ratio 0.99                         # test_ratio
            
 The testing result will be saved in the classification_report.txt.
 
 ## 6. Cite
 If you use MCNN-CP in your work please cite our paper:
+* BibTex：
+
 
     @ARTICLE{9103280,
       author={J. {Zheng} and Y. {Feng} and C. {Bai} and J. {Zhang}},
       journal={IEEE Transactions on Geoscience and Remote Sensing}, 
       title={Hyperspectral Image Classification Using Mixed Convolutions and Covariance Pooling}, 
-      year={2020},
-      volume={},
-      number={},
-      pages={1-13},
+      year={2021},
+      volume={59},
+      number={1},
+      pages={522-534},
+      doi={10.1109/TGRS.2020.2995575}},
     }
+
+* Plane Text：
+	
+    J. Zheng, Y. Feng, C. Bai and J. Zhang, "Hyperspectral Image Classification Using Mixed Convolutions and Covariance Pooling," in IEEE Transactions on Geoscience and Remote Sensing, vol. 59, no. 1, pp. 522-534, Jan. 2021, doi: 10.1109/TGRS.2020.2995575.
