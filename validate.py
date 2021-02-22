@@ -163,23 +163,17 @@ def main():
     X,pca,ratio = applyPCA(X,numComponents=componentsNum)
     X = infoChange(X,componentsNum)
     X, y = createPatches(X, y, windowSize=windowSize)
-    Xtrain, Xtest, ytrain, ytest = splitTrainTestSet(X, y, test_ratio)
-
-    Xtrain = Xtrain.reshape(-1, windowSize, windowSize, componentsNum, 1)
-    ytrain = np_utils.to_categorical(ytrain)
     
+    Xtrain, Xtest, ytrain, ytest = splitTrainTestSet(X, y, test_ratio)
     Xvalid, Xtest, yvalid, ytest = splitTrainTestSet(Xtest, ytest, (test_ratio-train_ratio/train_val_ratio)/test_ratio)
 
-    Xvalid = Xvalid.reshape(-1, windowSize, windowSize, componentsNum, 1)
-    yvalid = np_utils.to_categorical(yvalid)
-    
     Xtest = Xtest.reshape(-1, windowSize, windowSize, componentsNum, 1)
     ytest = np_utils.to_categorical(ytest)
 
-    model = load_model(str(modelname)+'.h5', custom_objects={'SubpixelConv2D': SubpixelConv2D,'tf': tf})
+    model = load_model('models/'+str(modelname)+'.h5', custom_objects={'SubpixelConv2D': SubpixelConv2D,'tf': tf})
     adam = Adam(lr=0.001, decay=1e-06)
 
-    model.load_weights(str(modelname)+"_"+str(dataset)+".hdf5")
+    model.load_weights('pretrained_models/'+str(modelname)+"_"+str(dataset)+".hdf5")
     model.compile(loss='categorical_crossentropy', optimizer=adam, metrics=['accuracy'])
 
     Y_pred_test = model.predict(Xtest)
