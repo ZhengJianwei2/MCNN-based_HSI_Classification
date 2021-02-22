@@ -12,9 +12,8 @@ This code has been tested on on a personal laptop with Intel i7-9750H 2.6-GHz pr
 * IP:
 [Indian Pines corrected](http://www.ehu.eus/ccwintco/uploads/6/67/Indian_pines_corrected.mat) and
     [Indian Pines gt](http://www.ehu.eus/ccwintco/uploads/c/c4/Indian_pines_gt.mat)
-* KSC:
-[Kennedy Space Center corrected](http://www.ehu.eus/ccwintco/uploads/2/26/KSC.mat) and
-    [Kennedy Space Center gt](http://www.ehu.eus/ccwintco/uploads/a/a6/KSC_gt.mat)
+* UH:
+[University of Houston 2018](https://hyperspectral.ee.uh.edu/?page_id=1075)
 * UP:
 [University of Pavia corrected](http://www.ehu.eus/ccwintco/uploads/e/ee/PaviaU.mat) and
     [University of Pavia gt](http://www.ehu.eus/ccwintco/uploads/5/50/PaviaU_gt.mat)
