@@ -169,8 +169,12 @@ def main():
     ytrain = np_utils.to_categorical(ytrain)
     
     Xvalid, Xtest, yvalid, ytest = splitTrainTestSet(Xtest, ytest, (test_ratio-train_ratio/train_val_ratio)/test_ratio)
+
     Xvalid = Xvalid.reshape(-1, windowSize, windowSize, componentsNum, 1)
     yvalid = np_utils.to_categorical(yvalid)
+    
+    Xtest = Xtest.reshape(-1, windowSize, windowSize, componentsNum, 1)
+    ytest = np_utils.to_categorical(ytest)
 
     model = load_model(str(modelname)+'.h5', custom_objects={'SubpixelConv2D': SubpixelConv2D,'tf': tf})
     adam = Adam(lr=0.001, decay=1e-06)
