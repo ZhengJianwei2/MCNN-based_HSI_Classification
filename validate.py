@@ -21,8 +21,8 @@ import os
 import argparse
 
 # MODELS = ['MCNN-CP','Oct-MCNN-PS'] # 可选模型
-# DATASETS = ['IP','UP','UP','SA'] # 可选数据集
-# RATIOS = [0.99, 0.995] # 可选测试样本量(测试样本+验证样本)，剩余为训练样本量
+# DATASETS = ['IP','UH','UP','SA'] # 可选数据集
+# RATIOS = [0.99, 0.995] # 可选测试样本量(测试样本+验证样本)，剩余为训练样本量  IP:0.99  UH/UP/SA:0.995
 parser = argparse.ArgumentParser(description='evaluation')
 parser.add_argument('--dataset', '-d', type=str, default='IP',
                     help='dataset name')
