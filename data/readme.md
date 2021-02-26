@@ -4,10 +4,8 @@ Download data sets:
 
 [Indian Pines gt](http://www.ehu.eus/ccwintco/uploads/c/c4/Indian_pines_gt.mat)
 
-## KSC:
-[Kennedy Space Center corrected](http://www.ehu.eus/ccwintco/uploads/2/26/KSC.mat)
-
-[Kennedy Space Center gt](http://www.ehu.eus/ccwintco/uploads/a/a6/KSC_gt.mat)
+## UH:
+[University of Houston 2018](https://hyperspectral.ee.uh.edu/?page_id=1075)
 
 ## UP:
 [University of Pavia corrected](http://www.ehu.eus/ccwintco/uploads/e/ee/PaviaU.mat)
