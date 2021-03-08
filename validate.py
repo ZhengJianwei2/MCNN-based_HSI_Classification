@@ -116,9 +116,10 @@ def reports (X_test,y_test,name):
                         'Hay-windrowed', 'Oats', 'Soybean-notill', 'Soybean-mintill',
                         'Soybean-clean', 'Wheat', 'Woods', 'Buildings-Grass-Trees-Drives',
                         'Stone-Steel-Towers']
-    elif name == 'KSC':
-        target_names = ['Scrub','Willow-swamp','CP-hammock','Slash-pine','Oak/Broadleaf','Hardwood','Swamp','Graminoid-marsh'
-                        ,'Spartina-marsh','Cattail-marsh','Salt-marsh','Mud-flats','Water']
+    elif name == 'UH':
+        target_names = ['Healthy grass','Stressed grass','Artificial turf','Evergreen trees', 'Deciduous trees','Bare earth','Water',
+                        'Residential buildings','Non-residential buildings','Roads','Sidewalks','Crosswalks','Major thoroughfares','Highways',
+                       'Railways','Paved parking lots','Unpaved parking lots','Cars','Trains','Stadium seats']
     elif name == 'SA':
         target_names = ['Brocoli_green_weeds_1','Brocoli_green_weeds_2','Fallow','Fallow_rough_plow','Fallow_smooth',
                         'Stubble','Celery','Grapes_untrained','Soil_vinyard_develop','Corn_senesced_green_weeds',
@@ -151,7 +152,7 @@ def main():
     componentsNum = 20 if dataset == 'UP' else 28
     if dataset == 'UP':
       componentsNum = 15
-    elif dataset == 'HU':
+    elif dataset == 'UH':
       componentsNum = 50 if test_ratio >= 0.99 else 25
     elif dataset == 'IP':
       componentsNum = 110
