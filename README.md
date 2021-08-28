@@ -1,7 +1,7 @@
 # MCNN-based_HSI_Classification
 ## Papers
 * MCNN-CP: Hyperspectral Image Classification Using Mixed Convolutions and Covariance Pooling (TGARS 2021) [paper](https://ieeexplore.ieee.org/document/9103280/) and [source_code](https://github.com/ZhengJianwei2/MCNN-based_HSI_Classification/blob/master/MCNN-CP-Source-code.ipynb)
-* Oct-MCNN-PS: Hyperspectral Image Classification Using Hybrid 3D-Octave and 2D-Sub-Pixel Convolutional Neural Network (Pattern Recognition Submitted)
+* Oct-MCNN-PS: Hyperspectral Image Classification Using Hybrid 3D-Octave and 2D-Sub-Pixel Convolutional Neural Network (Submitted)
 
 ## 1. Environment setup
 This code has been tested on on a personal laptop with Intel i7-9750H 2.6-GHz processor, 32-GB RAM, and an NVIDIA GTX1650 graphic card, Python 3.6, tensorflow_gpu-1.14.0, Keras-2.2.4, CUDA 10.0, cuDNN 7.6. Please install related libraries before running this code:
@@ -31,13 +31,13 @@ and put them into models directory.
 
 ## 4. Download the pretrained_models (loading model parameters):
 * IP:
-[Indian Pines](https://pan.baidu.com/s/1shzME97Y7Ci_5EvM9qdTWQ) code: d59l
+[Indian Pines]() code: 
 * UH:
-[University of Houston](https://pan.baidu.com/s/11EZ88xSvmirem4f8UxY8Bg) code: Cb73
+[University of Houston]() code: 
 * UP:
-[University of Pavia](https://pan.baidu.com/s/1wM8vBRewnBHmCHvPbnBnOg) code: 8h4m
+[University of Pavia]() code: 
 * SA:
-[Salinas Scene](https://pan.baidu.com/s/1DZAd5Ufm5DkCLUCVCz33dQ) code: io53
+[Salinas Scene]() code: 
 
 and put them into pretrained_models directory.
 
