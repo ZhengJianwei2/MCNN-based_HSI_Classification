@@ -45,7 +45,7 @@ and put them into pretrained_models directory.
 
     python validate.py                
 	--dataset IP                       # dataset_name
-	--model Oct-MCNN-PS                # model_name
+	--model MCNN-CP                    # model_name
 	--ratio 0.99                       # test_ratio
            
 The testing result will be saved in the classification_report.txt.
