@@ -1,7 +1,7 @@
 # MCNN-based_HSI_Classification
 ## Papers
 * MCNN-CP: Hyperspectral Image Classification Using Mixed Convolutions and Covariance Pooling (TGARS 2021) [paper](https://ieeexplore.ieee.org/document/9103280/) and [source_code](https://github.com/ZhengJianwei2/MCNN-based_HSI_Classification/blob/master/MCNN-CP-Source-code.ipynb)
-* Oct-MCNN-HS: 3D Octave and 2D Vanilla Mixed Convolutional Neural Network for Hyperspectral Image Classification With Limited Samples (Submitted)
+* Oct-MCNN-HS: 3D Octave and 2D Vanilla Mixed Convolutional Neural Network for Hyperspectral Image Classification With Limited Samples (Remote Sensing,2021)  [paper](https://www.mdpi.com/2072-4292/13/21/4407/htm)
 
 ## 1. Environment setup
 This code has been tested on on a personal laptop with Intel i7-9750H 2.6-GHz processor, 32-GB RAM, and an NVIDIA GTX1650 graphic card, Python 3.6, tensorflow_gpu-1.14.0, Keras-2.2.4, CUDA 10.0, cuDNN 7.6. Please install related libraries before running this code:
@@ -69,3 +69,21 @@ If you use MCNN-CP in your work please cite our paper:
 * Plane Text：
 	
     J. Zheng, Y. Feng, C. Bai and J. Zhang, "Hyperspectral Image Classification Using Mixed Convolutions and Covariance Pooling," in IEEE Transactions on Geoscience and Remote Sensing, vol. 59, no. 1, pp. 522-534, Jan. 2021, doi: 10.1109/TGRS.2020.2995575.
+    
+    
+If you use Oct-MCNN-PS in your work please cite our paper:
+* BibTex：
+
+
+    @Article{rs13214407,
+      AUTHOR = {Feng, Yuchao and Zheng, Jianwei and Qin, Mengjie and Bai, Cong and Zhang, Jinglin},
+      TITLE = {3D Octave and 2D Vanilla Mixed Convolutional Neural Network for Hyperspectral Image Classification with Limited Samples},
+      JOURNAL = {Remote Sensing},
+      VOLUME = {13},
+      YEAR = {2021},
+      NUMBER = {21},
+      ARTICLE-NUMBER = {4407},
+      URL = {https://www.mdpi.com/2072-4292/13/21/4407},
+      ISSN = {2072-4292},
+      DOI = {10.3390/rs13214407}
+    }
